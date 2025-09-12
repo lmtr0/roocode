@@ -5,6 +5,7 @@ import {
 	type GenerateContentParameters,
 	type GenerateContentConfig,
 	type GroundingMetadata,
+	type Content,
 } from "@google/genai"
 import type { JWTInput } from "google-auth-library"
 
@@ -361,7 +362,7 @@ export class GeminiHandler extends BaseProvider implements SingleCompletionHandl
 			}
 
 			// Prepare the content for generation
-			const contents: any[] = []
+			const contents: Content[] = []
 
 			if (inputImage) {
 				// For image editing mode, include both text and image
