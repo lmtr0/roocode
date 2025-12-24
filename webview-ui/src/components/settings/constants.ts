@@ -40,7 +40,6 @@ export const MODELS_BY_PROVIDER: Partial<Record<ProviderName, Record<string, Mod
 	groq: groqModels,
 	sambanova: sambaNovaModels,
 	zai: internationalZAiModels,
-	fireworks: fireworksModels,
 	featherless: featherlessModels,
 	minimax: minimaxModels,
 	baseten: basetenModels,

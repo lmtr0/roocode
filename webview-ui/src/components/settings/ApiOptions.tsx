@@ -753,7 +753,13 @@ const ApiOptions = ({
 			)}
 
 			{selectedProvider === "fireworks" && (
-				<Fireworks apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
+				<Fireworks
+					apiConfiguration={apiConfiguration}
+					setApiConfigurationField={setApiConfigurationField}
+					organizationAllowList={organizationAllowList}
+					errorMessage={modelValidationError}
+					simplifySettings={fromWelcomeView}
+				/>
 			)}
 
 			{selectedProvider === "roo" && (

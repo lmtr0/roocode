@@ -1,19 +1,34 @@
 import { useCallback } from "react"
 import { VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
 
-import type { ProviderSettings } from "@roo-code/types"
+import {
+	type ProviderSettings,
+	type OrganizationAllowList,
+	fireworksModels,
+	fireworksDefaultModelId,
+} from "@roo-code/types"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { VSCodeButtonLink } from "@src/components/common/VSCodeButtonLink"
 
 import { inputEventTransform } from "../transforms"
+import { ModelPicker } from "../ModelPicker"
 
 type FireworksProps = {
 	apiConfiguration: ProviderSettings
 	setApiConfigurationField: (field: keyof ProviderSettings, value: ProviderSettings[keyof ProviderSettings]) => void
+	organizationAllowList: OrganizationAllowList
+	errorMessage?: string
+	simplifySettings?: boolean
 }
 
-export const Fireworks = ({ apiConfiguration, setApiConfigurationField }: FireworksProps) => {
+export const Fireworks = ({
+	apiConfiguration,
+	setApiConfigurationField,
+	organizationAllowList,
+	errorMessage,
+	simplifySettings,
+}: FireworksProps) => {
 	const { t } = useAppTranslation()
 
 	const handleInputChange = useCallback(
@@ -45,6 +60,18 @@ export const Fireworks = ({ apiConfiguration, setApiConfigurationField }: Firewo
 					{t("settings:providers.getFireworksApiKey")}
 				</VSCodeButtonLink>
 			)}
+			<ModelPicker
+				apiConfiguration={apiConfiguration}
+				setApiConfigurationField={setApiConfigurationField}
+				defaultModelId={fireworksDefaultModelId}
+				models={fireworksModels}
+				modelIdKey="apiModelId"
+				serviceName="Fireworks"
+				serviceUrl="https://fireworks.ai/models"
+				organizationAllowList={organizationAllowList}
+				errorMessage={errorMessage}
+				simplifySettings={simplifySettings}
+			/>
 		</>
 	)
 }
